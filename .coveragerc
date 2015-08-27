@@ -1,0 +1,14 @@
+[run]
+branch = true
+
+[report]
+omit =
+    *site-packages*
+    *test*
+    *.tox*
+    *conftest*
+    *virtuals*
+    *migrations*
+    *wsgi*
+    railroad/__init__*
+show_missing = True
