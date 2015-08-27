@@ -19,12 +19,11 @@ version_line = [line for line in open(module_path)
 __version__ = eval(version_line.split('__version__ = ')[-1])
 
 readme = open('README.rst').read()
-doclink = ''
-# doclink = """
-# Documentation
-# -------------
+doclink = """
+Documentation
+-------------
 
-# The full documentation is at http://railroad.rtfd.org."""
+"""
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
