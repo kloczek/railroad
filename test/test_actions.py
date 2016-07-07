@@ -18,6 +18,7 @@ def test_result_return_state():
 
 def test_run_lifted_function_return_intermediate_state_crate():
     f = Mock()
+    f.__name__ = 'f'
     lifted = lift(f)
     prepered = lifted()
 
@@ -29,6 +30,7 @@ def test_run_lifted_function_return_intermediate_state_crate():
 
 def test_lift_call_state_fn():
     f = Mock()
+    f.__name__ = 'f'
     state_fn = Mock()
     lifted = lift(state_fn=state_fn)(f)
     prepered = lifted()
