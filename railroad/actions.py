@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from functools import wraps
+from functools import wraps, partial
 from six.moves import reduce
 from toolz import concatv, cons, remove
 
@@ -10,7 +10,7 @@ def actions(acts, done):
     Prepare actions pipeline.
 
     :param tuple acts: called functions
-    :param functin done: get result from actions
+    :param function done: get result from actions
     :returns function: function that starts executio
     '''
 
@@ -32,7 +32,7 @@ def actions(acts, done):
     return _actions
 
 
-def lift(state_fn=None):
+def lift(fn=None, state_fn=None):
     """
     The lift decorator function will be used to abstract away the management
     of the state object used as the intermediate representation of actions.
@@ -42,18 +42,18 @@ def lift(state_fn=None):
     :param function state: a function to provide what the new state looks like
     :returns function: a function suitable for use in actions
     """
+    if fn is None:
+        return partial(lift, state_fn=state_fn)
 
-    def lift_decorator(fn):
-        @wraps(fn)
-        def _lift_decorator(*args, **kwargs):
-            def _run(state):
-                ans = fn(*cons(state, args), **kwargs)
-                s = state_fn(state) if state_fn is not None else ans
+    @wraps(fn)
+    def _lift(*args, **kwargs):
+        def _run(state):
+            ans = fn(*cons(state, args), **kwargs)
+            s = state_fn(state) if state_fn is not None else ans
 
-                return {'answer': ans, 'state': s}
-            return _run
-        return _lift_decorator
-    return lift_decorator
+            return {'answer': ans, 'state': s}
+        return _run
+    return _lift
 
 
 def result(values, state):

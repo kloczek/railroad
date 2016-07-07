@@ -13,3 +13,4 @@ from .rescue import (  # noqa
     nop,
     rescue,
 )
+from .actions import actions, lift, result  # noqa
