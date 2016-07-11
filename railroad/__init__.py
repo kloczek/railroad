@@ -1,6 +1,6 @@
 __author__ = 'Jindrich K. Smitka'
 __email__ = 'smitka.j@gmail.com'
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 from .railroad import (  # noqa
     prepare,
@@ -14,3 +14,5 @@ from .rescue import (  # noqa
     rescue,
 )
 from .actions import actions, lift, result  # noqa
+
+from .guard import guard, GuardError  # noqa
