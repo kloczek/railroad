@@ -1,10 +1,33 @@
 # -*- coding: utf-8 -*-
+import six
 
+from collections import OrderedDict
 from functools import wraps
+
+if six.PY3:
+    from inspect import signature
+else:
+    from funcsigs import signature
+
+from six import string_types
 
 
 class GuardError(Exception):
     pass
+
+
+def _params(f, argumets, keyword_argumets, params):
+    sig = signature(f)
+    bind = sig.bind(*argumets, **keyword_argumets)
+    if six.PY3:
+        bind.apply_defaults()
+
+    return OrderedDict(
+        filter(
+            lambda item: item[0] in params,
+            bind.arguments.items()
+        )
+    )
 
 
 def guard(params, guardian, error_class=GuardError, message=''):
@@ -17,12 +40,14 @@ def guard(params, guardian, error_class=GuardError, message=''):
     :param Exception error_class: raised class when guardian return false
     :param string message: error message
     '''
+    params = [params] if isinstance(params, string_types) else params
+
     def guard_decorate(f):
         @wraps(f)
         def _guard_decorate(*args, **kwargs):
-            if guardian(*args):
+            if guardian(**_params(f, args, kwargs, params)):
                 return f(*args, **kwargs)
             else:
-                raise error_class(message=message)
+                raise error_class(message)
         return _guard_decorate
     return guard_decorate
