@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import sys
+
 import six
 
 from collections import OrderedDict
 from functools import wraps
 
-if six.PY3:
+if six.PY3:  # pragma: no branch
     from inspect import signature
 else:
     from funcsigs import signature
@@ -19,7 +21,7 @@ class GuardError(Exception):
 def _params(f, argumets, keyword_argumets, params):
     sig = signature(f)
     bind = sig.bind(*argumets, **keyword_argumets)
-    if six.PY3:
+    if sys.version_info >= (3, 5):
         bind.apply_defaults()
 
     return OrderedDict(
