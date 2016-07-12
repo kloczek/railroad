@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import pytest
-
 from random import randint
 
 from mock import Mock, call
