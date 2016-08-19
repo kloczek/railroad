@@ -4,13 +4,14 @@ import sys
 import six
 
 from collections import OrderedDict
-from functools import wraps
+
 
 if six.PY3:  # pragma: no branch
     from inspect import signature
 else:
     from funcsigs import signature
 
+from boltons.funcutils import wraps
 from six import string_types
 
 

@@ -42,7 +42,8 @@ setup(
     install_requires=[
         'six>=1.7.3',
         'toolz>=0.7.4',
-        ' funcsigs>=1.0.2',
+        'funcsigs>=1.0.2',
+        'boltons>=16.5.0',
     ],
     license='MIT',
     zip_safe=False,

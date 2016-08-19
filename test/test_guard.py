@@ -62,3 +62,20 @@ def test_guard_called_with_pramas_as_string():
     result = guarded(1, 'foo')
 
     assert result == 'foo'
+
+
+def test_combined_guard_call_each_guarded_function():
+    g1 = Mock()
+    g2 = Mock()
+
+    @guard('a', g1)
+    @guard('b', g2)
+    def fn(a, b, c):
+        return (a, b, c)
+
+    fn(1, 2, 3)
+
+    assert g1.called
+    assert g1.call_args == call(a=1)
+    assert g2.called
+    assert g2.call_args == call(b=2)

@@ -1,6 +1,6 @@
 __author__ = 'Jindrich K. Smitka'
 __email__ = 'smitka.j@gmail.com'
-__version__ = '0.4.0'
+__version__ = '0.4.1'
 
 from .railroad import (  # noqa
     prepare,
