@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
-
 def dispatch(*funcs):
-    '''Iterates through the functions
+    r'''Iterates through the functions
     and calls them with given the parameters
     and returns the first non-empty result
 

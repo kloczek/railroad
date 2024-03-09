@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 import pytest
 
-from mock import Mock, call
+from unittest.mock import Mock, call
 
 from railroad import rescue
 

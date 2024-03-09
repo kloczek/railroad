@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-
 from functools import wraps, partial
-from six.moves import reduce
+from functools import reduce
 from toolz import concatv, cons, remove
 
 

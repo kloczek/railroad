@@ -3,7 +3,7 @@ Tests for `railroad` module.
 """
 import pytest
 
-from mock import Mock, call
+from unittest.mock import Mock, call
 
 from railroad import (
     prepare,

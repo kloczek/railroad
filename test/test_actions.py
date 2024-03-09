@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 from random import randint
 
-from mock import Mock, call
+from unittest.mock import Mock, call
 from toolz import cons
 
 from railroad import actions, lift, result
