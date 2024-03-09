@@ -1,15 +1,8 @@
 import sys
 
-import six
-
 from collections import OrderedDict
-
-
 from inspect import signature
-
 from boltons.funcutils import wraps
-from six import string_types
-
 
 class GuardError(Exception):
     pass
